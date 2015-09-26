@@ -28,6 +28,8 @@ import com.ibm.nosql.json.api.BasicDBList;
 import com.ibm.nosql.json.api.BasicDBObject;
 import com.ibm.nosql.json.util.JSON;
 
+//import org.json.simple.JSONObject;
+
 /**
  * Servlet implementation class servlet1
  */
