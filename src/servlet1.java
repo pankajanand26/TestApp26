@@ -147,18 +147,18 @@ public class servlet1 extends HttpServlet {
 			String sqlStatement = "";
 			// It is recommend NOT to use the default schema since it is correlated
 			// to the generated user ID
-			String schemaName = "SQLDBSAMPLE";
+			String schemaName = "USER08779";
 			// create a unique table name to make sure we deal with our own table
 			// If another version of this sample app binds to the same database, 
 			// this gives us some level of isolation
-			tableName = schemaName + "." + "PAYROLL" + System.currentTimeMillis();
+			tableName = schemaName + "." + "TESTTABLE" + System.currentTimeMillis();
 	
 			try {
 				stmt = con.createStatement();
 				// Create the CREATE SCHEMA SQL statement and execute it
 				sqlStatement = "CREATE SCHEMA " + schemaName;
 				writer.println("Executing: " + sqlStatement);
-				stmt.executeUpdate(sqlStatement);
+				//stmt.executeUpdate(sqlStatement);
 			} catch (SQLException e) {
 				writer.println("Error creating schema: " + e);
 			}
@@ -170,7 +170,7 @@ public class servlet1 extends HttpServlet {
 				sqlStatement = "CREATE TABLE " + tableName
 						+ " (NAME VARCHAR(20), AGE INTEGER)";
 				writer.println("Executing: " + sqlStatement);
-				stmt.executeUpdate(sqlStatement);
+				//stmt.executeUpdate(sqlStatement);
 			} catch (SQLException e) {
 				writer.println("Error creating table: " + e);
 			}
@@ -178,12 +178,12 @@ public class servlet1 extends HttpServlet {
 			// Execute some SQL statements on the table: Insert, Select and Delete
 			try {
 				sqlStatement = "INSERT INTO " + tableName
-						+ " VALUES (\'John Smith\', 52)";
+						+ " VALUES (1, 1)";
 				writer.println("Executing: " + sqlStatement);
 				stmt.executeUpdate(sqlStatement);
 	
 				sqlStatement = "SELECT * FROM " + tableName
-						+ " WHERE NAME LIKE \'John%\'";
+						+ " WHERE YES = 1 ";
 				ResultSet rs = stmt.executeQuery(sqlStatement);
 				writer.println("Executing: " + sqlStatement);
 	
@@ -200,7 +200,7 @@ public class servlet1 extends HttpServlet {
 				sqlStatement = "DELETE FROM " + tableName
 						+ " WHERE NAME = \'John Smith\'";
 				writer.println("Executing: " + sqlStatement);
-				stmt.executeUpdate(sqlStatement);
+				//stmt.executeUpdate(sqlStatement);
 			} catch (SQLException e) {
 				writer.println("Error executing:" + sqlStatement);
 				writer.println("SQL Exception: " + e);
@@ -210,7 +210,7 @@ public class servlet1 extends HttpServlet {
 			try {
 				sqlStatement = "DROP TABLE " + tableName;
 				writer.println("Executing: " + sqlStatement);
-				stmt.executeUpdate(sqlStatement);
+				//stmt.executeUpdate(sqlStatement);
 			} catch (SQLException e) {
 				writer.println("Error dropping table: " + e);
 			}
@@ -219,7 +219,7 @@ public class servlet1 extends HttpServlet {
 			try {
 				sqlStatement = "DROP SCHEMA " + schemaName + " RESTRICT";
 				writer.println("Executing: " + sqlStatement);
-				stmt.executeUpdate(sqlStatement);
+				//stmt.executeUpdate(sqlStatement);
 			} catch (SQLException e) {
 				writer.println("Error Dropping schema: " + e);
 			}
