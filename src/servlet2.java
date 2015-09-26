@@ -8,16 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class servlet1
+ * Servlet implementation class servlet2
  */
-@WebServlet("/servlet1")
-public class servlet1 extends HttpServlet {
+@WebServlet("/servlet2")
+public class servlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public servlet1() {
+    public servlet2() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -26,7 +27,7 @@ public class servlet1 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served Servlet1 at: ").append(request.getContextPath());
+		response.getWriter().append("Served Servlet2 at: ").append(request.getContextPath());
 	}
 
 	/**
