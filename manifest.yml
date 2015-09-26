@@ -6,3 +6,6 @@ applications:
   name: TestApp26
   host: testapp26
   disk_quota: 1024M
+ # replace the service name below with appropriate SQLDB service you created
+  services:
+  - SQLDB-sqldb26
