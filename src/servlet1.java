@@ -49,14 +49,14 @@ public class servlet1 extends HttpServlet {
 		// VCAP_SERVICES is a system environment variable
 		// Parse it to obtain the for DB2 connection info
 		String VCAP_SERVICES = System.getenv("VCAP_SERVICES");
-		writer.println("VCAP_SERVICES content: " + VCAP_SERVICES);
+		writer.println("VCAP_SERVICES content: " + VCAP_SERVICES +"<br/>");
 
 		if (VCAP_SERVICES != null) {
 			// parse the VCAP JSON structure
 			BasicDBObject obj = (BasicDBObject) JSON.parse(VCAP_SERVICES);
 			String thekey = null;
 			Set<String> keys = obj.keySet();
-			writer.println("Searching through VCAP keys");
+			writer.println("Searching through VCAP keys"+"<br/>");
 			// Look for the VCAP key that holds the SQLDB information
 			for (String eachkey : keys) {
 				writer.println("Key is: " + eachkey);
@@ -66,12 +66,12 @@ public class servlet1 extends HttpServlet {
 				}
 			}
 			if (thekey == null) {
-				writer.println("Cannot find any SQLDB service in the VCAP; exiting");
+				writer.println("Cannot find any SQLDB service in the VCAP; exiting"+"<br/>");
 				return false;
 			}
 			BasicDBList list = (BasicDBList) obj.get(thekey);
 			obj = (BasicDBObject) list.get("0");
-			writer.println("Service found: " + obj.get("name"));
+			writer.println("Service found: " + obj.get("name")+"<br/>");
 			// parse all the credentials from the vcap env variable
 			obj = (BasicDBObject) obj.get("credentials");
 			databaseHost = (String) obj.get("host");
@@ -84,13 +84,13 @@ public class servlet1 extends HttpServlet {
 			writer.println("VCAP_SERVICES is null");
 			return false;
 		}
-		writer.println();
-		writer.println("database host: " + databaseHost);
-		writer.println("database port: " + port);
-		writer.println("database name: " + databaseName);
-		writer.println("username: " + user);
-		writer.println("password: " + password);
-		writer.println("url: " + url);
+		writer.println("<br/>");
+		writer.println("database host: " + databaseHost+"<br/>");
+		writer.println("database port: " + port+"<br/>");
+		writer.println("database name: " + databaseName+"<br/>");
+		writer.println("username: " + user+"<br/>");
+		writer.println("password: " + password+"<br/>");
+		writer.println("url: " + url+"<br/>");
 		return true;
 	}
 	
@@ -112,10 +112,10 @@ public class servlet1 extends HttpServlet {
 		response.setContentType("text/html");
 		response.setStatus(200);
 		PrintWriter writer = response.getWriter();
-		writer.println("IBM SQL Database, Java Demo Application using DB2 drivers");
-		writer.println("Servlet: " + this.getClass().getName());
-		writer.println();
-		writer.println("Host IP:" + InetAddress.getLocalHost().getHostAddress());
+		writer.println("IBM SQL Database, Java Demo Application using DB2 drivers"+"<br/>");
+		writer.println("Servlet: " + this.getClass().getName()+"<br/>");
+		writer.println("<br/>");
+		writer.println("Host IP:" + InetAddress.getLocalHost().getHostAddress()+"<br/>");
 
 		// process the VCAP env variable and set all the global connection parameters
 		if (processVCAP(writer)) {
@@ -123,8 +123,8 @@ public class servlet1 extends HttpServlet {
 			// Connect to the Database
 			Connection con = null;
 			try {
-				writer.println();
-				writer.println("Connecting to the database");
+				writer.println("<br/>");
+				writer.println("Connecting to the database"+"<br/>");
 				DB2SimpleDataSource dataSource = new DB2SimpleDataSource();
 				dataSource.setServerName(databaseHost);
 				dataSource.setPortNumber(port);
@@ -133,11 +133,11 @@ public class servlet1 extends HttpServlet {
 				dataSource.setPassword (password);
 				dataSource.setDriverType(4);
 				con=dataSource.getConnection();
-				writer.println();
+				writer.println("<br/>");
 				con.setAutoCommit(false);
 			} catch (SQLException e) {
-				writer.println("Error connecting to database");
-				writer.println("SQL Exception: " + e);
+				writer.println("Error connecting to database"+"<br/>");
+				writer.println("SQL Exception: " + e+"<br/>");
 				return;
 			} 
 	
@@ -157,10 +157,10 @@ public class servlet1 extends HttpServlet {
 				stmt = con.createStatement();
 				// Create the CREATE SCHEMA SQL statement and execute it
 				sqlStatement = "CREATE SCHEMA " + schemaName;
-				writer.println("Executing: " + sqlStatement);
+				writer.println("Executing: " + sqlStatement+"<br/>");
 				//stmt.executeUpdate(sqlStatement);
 			} catch (SQLException e) {
-				writer.println("Error creating schema: " + e);
+				writer.println("Error creating schema: " + e+"<br/>");
 			}
 	
 			// create a table
@@ -169,10 +169,10 @@ public class servlet1 extends HttpServlet {
 				// Create the CREATE TABLE SQL statement and execute it
 				sqlStatement = "CREATE TABLE " + tableName
 						+ " (NAME VARCHAR(20), AGE INTEGER)";
-				writer.println("Executing: " + sqlStatement);
+				writer.println("Executing: " + sqlStatement+"<br/>");
 				//stmt.executeUpdate(sqlStatement);
 			} catch (SQLException e) {
-				writer.println("Error creating table: " + e);
+				writer.println("Error creating table: " + e+"<br/>");
 			}
 	
 			// Execute some SQL statements on the table: Insert, Select and Delete
@@ -186,19 +186,19 @@ public class servlet1 extends HttpServlet {
 				
 				sqlStatement = "UPDATE " + tableName
 						+ " SET YES=YES+1, NO=NO+1";
-				writer.println("Executing: " + sqlStatement);
+				writer.println("Executing: " + sqlStatement+"<br/>");
 				stmt.executeUpdate(sqlStatement);
 	
 				sqlStatement = "SELECT YES,NO FROM " + tableName;
 				ResultSet rs = stmt.executeQuery(sqlStatement);
-				writer.println("Executing: " + sqlStatement);
+				writer.println("Executing: " + sqlStatement+"<br/>");
 	
 				// Process the result set
 				int yes,no;
 				while (rs.next()) {
 					yes = rs.getInt("YES");
 					no = rs.getInt("NO");
-					writer.println(" <h1> website visits  : " + yes + "</h1>");
+					writer.println(" <h1> website visits  : " + yes + "</h1>"+"<br/>");
 				}
 				// Close the ResultSet
 				rs.close();
@@ -206,11 +206,11 @@ public class servlet1 extends HttpServlet {
 				// Delete the record
 				sqlStatement = "DELETE FROM " + tableName
 						+ " WHERE NAME = \'John Smith\'";
-				writer.println("Executing: " + sqlStatement);
+				writer.println("Executing: " + sqlStatement+"<br/>");
 				//stmt.executeUpdate(sqlStatement);
 			} catch (SQLException e) {
-				writer.println("Error executing:" + sqlStatement);
-				writer.println("SQL Exception: " + e);
+				writer.println("Error executing:" + sqlStatement+"<br/>");
+				writer.println("SQL Exception: " + e+"<br/>");
 			}
 	
 //			// Remove the table from the database
@@ -239,11 +239,11 @@ public class servlet1 extends HttpServlet {
 				con.commit();
 				// Close the connection
 				con.close();
-				writer.println("Finished");
+				writer.println("Finished"+"<br/>");
 	
 			} catch (SQLException e) {
-				writer.println("Error closing things off");
-				writer.println("SQL Exception: " + e);
+				writer.println("Error closing things off"+"<br/>");
+				writer.println("SQL Exception: " + e+"<br/>");
 			}
 		}
 		writer.close();
