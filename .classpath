@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="dep-jar/com.ibm.ws.javaee.jaxrs.1.1_1.0.1.jar"/>
 	<classpathentry kind="lib" path="/home/pankajanand/javaapi/servlet-api.jar"/>
 	<classpathentry kind="lib" path="/home/pankajanand/javaapi/nosqljson.jar"/>
+	<classpathentry kind="lib" path="/home/pankajanand/javaapi/db2jcc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
