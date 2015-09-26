@@ -109,7 +109,7 @@ public class servlet1 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		response.setContentType("text/plain");
+		response.setContentType("text/html");
 		response.setStatus(200);
 		PrintWriter writer = response.getWriter();
 		writer.println("IBM SQL Database, Java Demo Application using DB2 drivers");
@@ -198,7 +198,7 @@ public class servlet1 extends HttpServlet {
 				while (rs.next()) {
 					yes = rs.getInt("YES");
 					no = rs.getInt("NO");
-					writer.println("  Found Employee: " + yes + " "+ no);
+					writer.println(" <h1> website visits  : " + yes + "</hi>");
 				}
 				// Close the ResultSet
 				rs.close();
