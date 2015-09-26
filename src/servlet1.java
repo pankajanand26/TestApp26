@@ -206,23 +206,23 @@ public class servlet1 extends HttpServlet {
 				writer.println("SQL Exception: " + e);
 			}
 	
-			// Remove the table from the database
-			try {
-				sqlStatement = "DROP TABLE " + tableName;
-				writer.println("Executing: " + sqlStatement);
-				//stmt.executeUpdate(sqlStatement);
-			} catch (SQLException e) {
-				writer.println("Error dropping table: " + e);
-			}
-			
-			// Remove the schema from the database
-			try {
-				sqlStatement = "DROP SCHEMA " + schemaName + " RESTRICT";
-				writer.println("Executing: " + sqlStatement);
-				//stmt.executeUpdate(sqlStatement);
-			} catch (SQLException e) {
-				writer.println("Error Dropping schema: " + e);
-			}
+//			// Remove the table from the database
+//			try {
+//				sqlStatement = "DROP TABLE " + tableName;
+//				writer.println("Executing: " + sqlStatement);
+//				//stmt.executeUpdate(sqlStatement);
+//			} catch (SQLException e) {
+//				writer.println("Error dropping table: " + e);
+//			}
+//			
+//			// Remove the schema from the database
+//			try {
+//				sqlStatement = "DROP SCHEMA " + schemaName + " RESTRICT";
+//				writer.println("Executing: " + sqlStatement);
+//				//stmt.executeUpdate(sqlStatement);
+//			} catch (SQLException e) {
+//				writer.println("Error Dropping schema: " + e);
+//			}
 	
 			// Close everything off
 			try {
