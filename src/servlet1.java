@@ -158,7 +158,7 @@ public class servlet1 extends HttpServlet {
 				// Create the CREATE SCHEMA SQL statement and execute it
 				sqlStatement = "CREATE SCHEMA " + schemaName;
 				writer.println("Executing: " + sqlStatement);
-				//stmt.executeUpdate(sqlStatement);
+				stmt.executeUpdate(sqlStatement);
 			} catch (SQLException e) {
 				writer.println("Error creating schema: " + e);
 			}
