@@ -177,6 +177,13 @@ public class servlet1 extends HttpServlet {
 	
 			// Execute some SQL statements on the table: Insert, Select and Delete
 			try {
+				
+				sqlStatement = "INSERT INTO " + tableName
+						+ " VALUES (0,0)";
+				writer.println("Executing: " + sqlStatement);
+				stmt.executeUpdate(sqlStatement);
+	
+				
 				sqlStatement = "UPDATE " + tableName
 						+ " SET YES=1, NO=1";
 				writer.println("Executing: " + sqlStatement);
