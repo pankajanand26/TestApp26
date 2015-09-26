@@ -198,7 +198,7 @@ public class servlet1 extends HttpServlet {
 				while (rs.next()) {
 					yes = rs.getInt("YES");
 					no = rs.getInt("NO");
-					writer.println(" <h1> website visits  : " + yes + "</hi>");
+					writer.println(" <h1> website visits  : " + yes + "</h1>");
 				}
 				// Close the ResultSet
 				rs.close();
