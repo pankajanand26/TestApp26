@@ -170,7 +170,7 @@ public class servlet1 extends HttpServlet {
 				sqlStatement = "CREATE TABLE " + tableName
 						+ " (NAME VARCHAR(20), AGE INTEGER)";
 				writer.println("Executing: " + sqlStatement);
-				stmt.executeUpdate(sqlStatement);
+				//stmt.executeUpdate(sqlStatement);
 			} catch (SQLException e) {
 				writer.println("Error creating table: " + e);
 			}
@@ -178,11 +178,11 @@ public class servlet1 extends HttpServlet {
 			// Execute some SQL statements on the table: Insert, Select and Delete
 			try {
 				sqlStatement = "INSERT INTO " + tableName
-						+ " VALUES (\'John\', 24)";
+						+ " VALUES (\'John\', 26)";
 				writer.println("Executing: " + sqlStatement);
 				stmt.executeUpdate(sqlStatement);
 	
-				sqlStatement = "SELECT * FROM " + tableName
+				sqlStatement = "SELECT NAME,AGE FROM " + tableName
 						+ " WHERE NAME LIKE %\'John\'% ";
 				ResultSet rs = stmt.executeQuery(sqlStatement);
 				writer.println("Executing: " + sqlStatement);
