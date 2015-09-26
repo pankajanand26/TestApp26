@@ -178,12 +178,12 @@ public class servlet1 extends HttpServlet {
 			// Execute some SQL statements on the table: Insert, Select and Delete
 			try {
 				sqlStatement = "INSERT INTO " + tableName
-						+ " VALUES (1, 1)";
+						+ " VALUES (\'John\', 24)";
 				writer.println("Executing: " + sqlStatement);
 				stmt.executeUpdate(sqlStatement);
 	
 				sqlStatement = "SELECT * FROM " + tableName
-						+ " WHERE YES = 1 ";
+						+ " WHERE NAME LIKE %\'John\'% ";
 				ResultSet rs = stmt.executeQuery(sqlStatement);
 				writer.println("Executing: " + sqlStatement);
 	
