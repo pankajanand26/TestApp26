@@ -151,7 +151,7 @@ public class servlet1 extends HttpServlet {
 			// create a unique table name to make sure we deal with our own table
 			// If another version of this sample app binds to the same database, 
 			// this gives us some level of isolation
-			tableName = schemaName + "." + "TESTTABLE" + System.currentTimeMillis();
+			tableName = schemaName + "." + "TESTTABLE";
 	
 			try {
 				stmt = con.createStatement();
@@ -177,21 +177,21 @@ public class servlet1 extends HttpServlet {
 	
 			// Execute some SQL statements on the table: Insert, Select and Delete
 			try {
-				sqlStatement = "INSERT INTO " + tableName
-						+ " VALUES (\'John\', 26)";
+				sqlStatement = "UPDATE " + tableName
+						+ " SET YES=1, NO=1";
 				writer.println("Executing: " + sqlStatement);
 				stmt.executeUpdate(sqlStatement);
 	
-				sqlStatement = "SELECT NAME,AGE FROM " + tableName
-						+ " WHERE NAME LIKE \'%John%\' ";
+				sqlStatement = "SELECT YES,NO FROM " + tableName;
 				ResultSet rs = stmt.executeQuery(sqlStatement);
 				writer.println("Executing: " + sqlStatement);
 	
 				// Process the result set
-				String empNo;
+				int yes,no;
 				while (rs.next()) {
-					empNo = rs.getString(1);
-					writer.println("  Found Employee: " + empNo);
+					yes = rs.getInt("YES");
+					no = rs.getInt("NO");
+					writer.println("  Found Employee: " + yes + " "+ no);
 				}
 				// Close the ResultSet
 				rs.close();
