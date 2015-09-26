@@ -183,7 +183,7 @@ public class servlet1 extends HttpServlet {
 				stmt.executeUpdate(sqlStatement);
 	
 				sqlStatement = "SELECT NAME,AGE FROM " + tableName
-						+ " WHERE NAME LIKE %\'John\'% ";
+						+ " WHERE NAME LIKE \'%John%\' ";
 				ResultSet rs = stmt.executeQuery(sqlStatement);
 				writer.println("Executing: " + sqlStatement);
 	
