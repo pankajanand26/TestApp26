@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="/home/pankajanand/javaapi/servlet-api.jar"/>
 	<classpathentry exported="true" kind="lib" path="/home/pankajanand/javaapi/nosqljson.jar"/>
 	<classpathentry kind="lib" path="/home/pankajanand/javaapi/db2jcc.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/nosqljson.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
