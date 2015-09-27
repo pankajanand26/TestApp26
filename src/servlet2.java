@@ -186,7 +186,7 @@ public class servlet2 extends HttpServlet {
 			// Close everything off
 			try {
 				// Close the Statement
-				stmt.close();
+				//stmt.close();
 				// Connection must be on a unit-of-work boundary to allow close
 				con.commit();
 				// Close the connection
