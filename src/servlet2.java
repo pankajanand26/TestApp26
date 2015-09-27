@@ -169,6 +169,8 @@ public class servlet2 extends HttpServlet {
 	
 				// Process the result set
 				while (rs.next()) {
+					writer.println("Rowset not empty." );
+					
 					pass_req = rs.getString("PASS");
 					if(pass == pass_req){
 						yes = 1;
