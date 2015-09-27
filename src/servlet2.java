@@ -220,8 +220,8 @@ public class servlet2 extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/websitevisits.jsp").forward(request, response);			
 		}
 		else{
-			request.setAttribute("uname", uname);
-			request.setAttribute("login_info", " Please Register");
+			request.setAttribute("uname", "Hello, "+ uname +"!!");
+			request.setAttribute("login_info", " Please register for a free account!");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}	
 		//response.getWriter().append("Served Servlet2 at: ").append(request.getContextPath());

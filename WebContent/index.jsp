@@ -39,7 +39,7 @@
 </table>
 </div>
 </div>
-<div class="panel-footer"><h3>Hello,&nbsp;${uname}</h3><br/>
+<div class="panel-footer"><h3>${uname}</h3><br/>
 ${login_info}
 </div>
 </form>
