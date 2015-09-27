@@ -164,6 +164,7 @@ public class servlet2 extends HttpServlet {
 				writer.println("Executing: " + uname+"<br/>"+pass);
 								
 				sqlStatement = "SELECT PASS FROM " + tableName + " where USER = '"+ uname +"'";
+				writer.println("sqlStatement : " + sqlStatement);
 				ResultSet rs = stmt.executeQuery(sqlStatement);
 	
 				// Process the result set
@@ -202,19 +203,19 @@ public class servlet2 extends HttpServlet {
 		
 		writer.close();
 		
-//		if(yes==1){
-//			request.setAttribute("uname", uname);
-//			request.setAttribute("desc", "The thief");
-//			request.getRequestDispatcher("/WEB-INF/websitevisits.jsp").forward(request, response);			
+		if(yes==1){
+			request.setAttribute("uname", uname);
+			request.setAttribute("desc", "The thief");
+			request.getRequestDispatcher("/WEB-INF/websitevisits.jsp").forward(request, response);			
 		}
-	//	else{
-		//	yes=0;
-			//request.setAttribute("uname", uname);
-		//	request.setAttribute("login_info", " Please Register");
-			//request.getRequestDispatcher("/index.jsp").forward(request, response);
-	//	}	
+		else{
+			yes=0;
+			request.setAttribute("uname", uname);
+			request.setAttribute("login_info", " Please Register");
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+		}	
 		//response.getWriter().append("Served Servlet2 at: ").append(request.getContextPath());
-	//}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
