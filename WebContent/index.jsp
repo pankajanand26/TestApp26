@@ -25,11 +25,11 @@
     <tr><td>
     <div class="form-group">
     <label for="exampleInputEmail1">Username</label>
-    <input type="uname" class="form-control" name="uname" id="uname" placeholder="Username">
+    <input type="username" class="form-control" name="uname" id="uname" placeholder="Username">
   	</div>
   	<div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input type="pass" class="form-control" name="pass" id="pass" placeholder="Password">
+    <input type="password" class="form-control" name="pass" id="pass" placeholder="Password">
   	</div>
   	</td>
   	</tr>
