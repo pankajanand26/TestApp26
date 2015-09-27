@@ -189,7 +189,7 @@ public class servlet2 extends HttpServlet {
 				// Close the Statement
 				stmt.close();
 				// Connection must be on a unit-of-work boundary to allow close
-				con.commit();
+				//con.commit();
 				// Close the connection
 				con.close();
 	
