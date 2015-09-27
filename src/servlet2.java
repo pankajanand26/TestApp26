@@ -111,6 +111,9 @@ public class servlet2 extends HttpServlet {
 				con=dataSource.getConnection();
 				con.setAutoCommit(false);
 			} catch (SQLException e) {
+				writer.println("Error connecting to database"+"<br/>");
+				writer.println("SQL Exception: " + e+"<br/>");
+				
 				return;
 			} 
 	
@@ -159,6 +162,9 @@ public class servlet2 extends HttpServlet {
 				rs.close();
 	
 			} catch (SQLException e) {
+				writer.println("Error connecting to database"+"<br/>");
+				writer.println("SQL Exception: " + e+"<br/>");
+				
 			}
 	
 	
@@ -172,6 +178,9 @@ public class servlet2 extends HttpServlet {
 				con.close();
 	
 			} catch (SQLException e) {
+				writer.println("Error connecting to database"+"<br/>");
+				writer.println("SQL Exception: " + e+"<br/>");
+				
 			}
 		}
 		writer.close();
