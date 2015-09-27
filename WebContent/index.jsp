@@ -11,9 +11,14 @@
 <body>
 
 <div class="container">
-<h1>Sign In</h1>
+
 <% if(!(error_message.isEmpty())){ %><p><strong>${error_message}</strong></p><% } %>
 <form action="http://localhost:9080/liberty-HelloWorld/servlet2" method="get"> 
+
+<div class="panel panel-primary">
+<div class="panel-heading"><h1>Sign In</h1></div>
+  <div class="panel-body">
+
 
 <table>
   <div class="fieldWrapper"> 
@@ -25,14 +30,19 @@
   	<div class="form-group">
     <label for="exampleInputPassword1">Password</label>
     <input type="pass" class="form-control" name="pass" id="pass" placeholder="Password">
-  	</div></td></tr>
   	</div>
+  	</td>
+  	</tr>
+  </div>
 	<tr><td padding: 20px;>
 <input type="submit" value="Submit" /></td><td></td></tr> 
 </table>
+</div>
+</div>
+<div class="panel-footer"><h3>Hello,&nbsp;${name}</h3><br/>
+${login_info}
+</div>
 </form>
 </div>
-<h3>Hello,&nbsp;${name}</h3></h3><br/>
-${login_info}
 </body>
 </html>

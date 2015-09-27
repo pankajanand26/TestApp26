@@ -35,10 +35,13 @@ public class servlet2 extends HttpServlet {
 		private String password = "tDI1YYrsy8xY";
 		private String url = "db2://user08779:tDI1YYrsy8xY@75.126.155.153:50000/SQLDB";
 	
-	private boolean processVCAP() {
+	private boolean processVCAP(PrintWriter writer) {
 		// VCAP_SERVICES is a system environment variable
 		// Parse it to obtain the for DB2 connection info
 		String VCAP_SERVICES = System.getenv("VCAP_SERVICES");
+		writer.println("IBM SQL Database, Java Demo Application using DB2 drivers"+"<br/>");
+		writer.println("Servlet: " + this.getClass().getName()+"<br/>");
+		writer.println("<br/>");
 
 		if (VCAP_SERVICES != null) {
 			// parse the VCAP JSON structure
@@ -90,9 +93,10 @@ public class servlet2 extends HttpServlet {
 		
 		response.setContentType("text/html");
 		response.setStatus(200);
+		PrintWriter writer = response.getWriter();
 		
 		// process the VCAP env variable and set all the global connection parameters
-		if (processVCAP()) {
+		if (processVCAP(writer)) {
 	
 			// Connect to the Database
 			Connection con = null;
@@ -139,6 +143,7 @@ public class servlet2 extends HttpServlet {
 				uname = request.getParameter("uname");
 				pass= request.getParameter("pass");
 				String  pass_req ;
+				writer.println("Executing: " + uname+"<br/>"+pass);
 								
 				sqlStatement = "SELECT PASS FROM " + tableName + " where USER = '"+ uname +"'";
 				ResultSet rs = stmt.executeQuery(sqlStatement);
@@ -169,21 +174,21 @@ public class servlet2 extends HttpServlet {
 			} catch (SQLException e) {
 			}
 		}
-		//writer.close();
+		writer.close();
 		
-		if(yes==1){
-			request.setAttribute("uname", uname);
-			request.setAttribute("desc", "The thief");
-			request.getRequestDispatcher("/WEB-INF/websitevisits.jsp").forward(request, response);			
+//		if(yes==1){
+//			request.setAttribute("uname", uname);
+//			request.setAttribute("desc", "The thief");
+//			request.getRequestDispatcher("/WEB-INF/websitevisits.jsp").forward(request, response);			
 		}
-		else{
-			yes=0;
-			request.setAttribute("uname", uname);
-			request.setAttribute("login_info", " Please Register");
-			request.getRequestDispatcher("/index.jsp").forward(request, response);
-		}	
+	//	else{
+		//	yes=0;
+			//request.setAttribute("uname", uname);
+		//	request.setAttribute("login_info", " Please Register");
+			//request.getRequestDispatcher("/index.jsp").forward(request, response);
+	//	}	
 		//response.getWriter().append("Served Servlet2 at: ").append(request.getContextPath());
-	}
+	//}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
