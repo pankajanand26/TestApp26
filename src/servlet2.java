@@ -166,7 +166,10 @@ public class servlet2 extends HttpServlet {
 				sqlStatement = "SELECT PASS FROM " + tableName + " WHERE USER = '"+ uname +"'";
 				writer.println("sqlStatement : " + sqlStatement);
 				ResultSet rs = stmt.executeQuery(sqlStatement);
-	
+				if(rs==null){
+					writer.println("rs not emppty");
+				}
+			
 				// Process the result set
 				while (rs.next()) {
 					writer.println("Rowset not empty." );
