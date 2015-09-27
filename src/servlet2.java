@@ -163,7 +163,7 @@ public class servlet2 extends HttpServlet {
 				String  pass_req ;
 				writer.println("Executing: " + uname+"<br/>"+pass);
 								
-				sqlStatement = "SELECT PASS FROM " + tableName + " WHERE USER = '"+ uname +"'";
+				sqlStatement = "SELECT PASS FROM " + tableName + " WHERE \"USER\" = '"+ uname +"'";
 				writer.println("sqlStatement : " + sqlStatement);
 				ResultSet rs = stmt.executeQuery(sqlStatement);
 				if(rs==null){
