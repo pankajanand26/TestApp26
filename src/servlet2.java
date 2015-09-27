@@ -1,11 +1,24 @@
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Set;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.ibm.db2.jcc.DB2SimpleDataSource;
+import com.ibm.nosql.json.api.BasicDBList;
+import com.ibm.nosql.json.api.BasicDBObject;
+import com.ibm.nosql.json.util.JSON;
 
 /**
  * Servlet implementation class servlet2
@@ -14,6 +27,50 @@ import javax.servlet.http.HttpServletResponse;
 public class servlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	// set defaults
+		private String databaseHost = "75.126.155.153";
+		private int port = 50000;
+		private String databaseName = "SQLDB";
+		private String user = "user08779";
+		private String password = "tDI1YYrsy8xY";
+		private String url = "db2://user08779:tDI1YYrsy8xY@75.126.155.153:50000/SQLDB";
+	
+	private boolean processVCAP() {
+		// VCAP_SERVICES is a system environment variable
+		// Parse it to obtain the for DB2 connection info
+		String VCAP_SERVICES = System.getenv("VCAP_SERVICES");
+
+		if (VCAP_SERVICES != null) {
+			// parse the VCAP JSON structure
+			BasicDBObject obj = (BasicDBObject) JSON.parse(VCAP_SERVICES);
+			String thekey = null;
+			Set<String> keys = obj.keySet();
+			// Look for the VCAP key that holds the SQLDB information
+			for (String eachkey : keys) {
+				// Just in case the service name gets changed to lower case in the future, use toUpperCase
+				if (eachkey.toUpperCase().contains("SQLDB")) {
+					thekey = eachkey;
+				}
+			}
+			if (thekey == null) {
+				return false;
+			}
+			BasicDBList list = (BasicDBList) obj.get(thekey);
+			obj = (BasicDBObject) list.get("0");
+			// parse all the credentials from the vcap env variable
+			obj = (BasicDBObject) obj.get("credentials");
+			databaseHost = (String) obj.get("host");
+			databaseName = (String) obj.get("db");
+			port = (int)obj.get("port");
+			user = (String) obj.get("username");
+			password = (String) obj.get("password");
+			url = (String) obj.get("jdbcurl");
+		} else {
+			return false;
+		}
+		return true;
+	}
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -27,11 +84,104 @@ public class servlet2 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
+		int yes=0,no=0;
+		String uname = null,pass;
 		
-		request.setAttribute("name", "Johnny Gaddar");
-		request.setAttribute("desc", "The thief");
-		request.getRequestDispatcher("/WEB-INF/websitevisits.jsp").forward(request, response);
+		response.setContentType("text/html");
+		response.setStatus(200);
 		
+		// process the VCAP env variable and set all the global connection parameters
+		if (processVCAP()) {
+	
+			// Connect to the Database
+			Connection con = null;
+			try {
+				DB2SimpleDataSource dataSource = new DB2SimpleDataSource();
+				dataSource.setServerName(databaseHost);
+				dataSource.setPortNumber(port);
+				dataSource.setDatabaseName(databaseName);
+				dataSource.setUser(user);
+				dataSource.setPassword (password);
+				dataSource.setDriverType(4);
+				con=dataSource.getConnection();
+				con.setAutoCommit(false);
+			} catch (SQLException e) {
+				return;
+			} 
+	
+			// Try out some dynamic SQL Statements
+			Statement stmt = null;
+			String tableName = "";
+			String sqlStatement = "";
+			// It is recommend NOT to use the default schema since it is correlated
+			// to the generated user ID
+			String schemaName = "USER08779";
+			// create a unique table name to make sure we deal with our own table
+			// If another version of this sample app binds to the same database, 
+			// this gives us some level of isolation
+			tableName = schemaName + "." + "USER_TABLE";
+	
+			// Execute some SQL statements on the table: Insert, Select and Delete
+			try {
+				
+//				sqlStatement = "INSERT INTO " + tableName
+//						+ " VALUES (0,0)";
+//				writer.println("Executing: " + sqlStatement);
+//				stmt.executeUpdate(sqlStatement);
+//	
+				
+//				sqlStatement = "UPDATE " + tableName
+//						+ " SET YES=YES+1, NO=NO+1";
+//				writer.println("Executing: " + sqlStatement+"<br/>");
+//				stmt.executeUpdate(sqlStatement);
+	
+				uname = request.getParameter("uname");
+				pass= request.getParameter("pass");
+				String  pass_req ;
+								
+				sqlStatement = "SELECT PASS FROM " + tableName + " where USER = '"+ uname +"'";
+				ResultSet rs = stmt.executeQuery(sqlStatement);
+	
+				// Process the result set
+				while (rs.next()) {
+					pass_req = rs.getString("PASS");
+					if(pass == pass_req){
+						yes = 1;
+					}
+				}
+				// Close the ResultSet
+				rs.close();
+	
+			} catch (SQLException e) {
+			}
+	
+	
+			// Close everything off
+			try {
+				// Close the Statement
+				stmt.close();
+				// Connection must be on a unit-of-work boundary to allow close
+				con.commit();
+				// Close the connection
+				con.close();
+	
+			} catch (SQLException e) {
+			}
+		}
+		//writer.close();
+		
+		if(yes==1){
+			request.setAttribute("uname", uname);
+			request.setAttribute("desc", "The thief");
+			request.getRequestDispatcher("/WEB-INF/websitevisits.jsp").forward(request, response);			
+		}
+		else{
+			yes=0;
+			request.setAttribute("uname", uname);
+			request.setAttribute("login_info", " Please Register");
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+		}	
 		//response.getWriter().append("Served Servlet2 at: ").append(request.getContextPath());
 	}
 
