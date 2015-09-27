@@ -145,7 +145,7 @@ public class servlet2 extends HttpServlet {
 	
 			// Execute some SQL statements on the table: Insert, Select and Delete
 	
-			//try {
+			try {
 				
 //				sqlStatement = "INSERT INTO " + tableName
 //						+ " VALUES (0,0)";
@@ -157,31 +157,31 @@ public class servlet2 extends HttpServlet {
 //						+ " SET YES=YES+1, NO=NO+1";
 //				writer.println("Executing: " + sqlStatement+"<br/>");
 //				stmt.executeUpdate(sqlStatement);
-	
+			stmt = con.createStatement();
 				uname = request.getParameter("uname");
 				pass= request.getParameter("pass");
 				String  pass_req ;
 				writer.println("Executing: " + uname+"<br/>"+pass);
 								
 				sqlStatement = "SELECT PASS FROM " + tableName + " where USER = '"+ uname +"'";
-//				ResultSet rs = stmt.executeQuery(sqlStatement);
-//	
-//				// Process the result set
-//				while (rs.next()) {
-//					pass_req = rs.getString("PASS");
-//					if(pass == pass_req){
-//						yes = 1;
-//					}
-//				}
-//				// Close the ResultSet
-//				rs.close();
-//	
-//			} catch (SQLException e) {
-//				writer.println("Error connecting to database"+"<br/>");
-//				writer.println("SQL Exception: " + e+"<br/>");
-//				
-//			}
-//	
+				ResultSet rs = stmt.executeQuery(sqlStatement);
+	
+				// Process the result set
+				while (rs.next()) {
+					pass_req = rs.getString("PASS");
+					if(pass == pass_req){
+						yes = 1;
+					}
+				}
+				// Close the ResultSet
+				rs.close();
+	
+			} catch (SQLException e) {
+				writer.println("Error connecting to database"+"<br/>");
+				writer.println("SQL Exception: " + e+"<br/>");
+				
+			}
+	
 	
 			// Close everything off
 			try {
