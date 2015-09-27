@@ -176,6 +176,7 @@ public class servlet2 extends HttpServlet {
 					
 					pass_req = rs.getString("PASS");
 					writer.println("pass_req : " + pass_req);
+					writer.println("pass_req : " + pass);
 					
 					if(pass == pass_req){
 						yes = 1;
