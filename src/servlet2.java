@@ -41,7 +41,7 @@ public class servlet2 extends HttpServlet {
 		String VCAP_SERVICES = System.getenv("VCAP_SERVICES");
 		writer.println("IBM SQL Database, Java Demo Application using DB2 drivers"+"<br/>");
 		writer.println("Servlet: " + this.getClass().getName()+"<br/>");
-		writer.println("<br/>");
+		writer.println("<br/>Hello");
 
 		if (VCAP_SERVICES != null) {
 			// parse the VCAP JSON structure
@@ -54,8 +54,13 @@ public class servlet2 extends HttpServlet {
 				if (eachkey.toUpperCase().contains("SQLDB")) {
 					thekey = eachkey;
 				}
+				else{
+					writer.println("<br/>The key is " + thekey);
+
+				}
 			}
 			if (thekey == null) {
+				writer.println("<br/>Key is null.");
 				return false;
 			}
 			BasicDBList list = (BasicDBList) obj.get(thekey);
@@ -69,8 +74,17 @@ public class servlet2 extends HttpServlet {
 			password = (String) obj.get("password");
 			url = (String) obj.get("jdbcurl");
 		} else {
+			writer.println("VCAP_SERVICES is null");
+
 			return false;
 		}
+		writer.println("<br/>");
+		writer.println("database host: " + databaseHost+"<br/>");
+		writer.println("database port: " + port+"<br/>");
+		writer.println("database name: " + databaseName+"<br/>");
+		writer.println("username: " + user+"<br/>");
+		writer.println("password: " + password+"<br/>");
+		writer.println("url: " + url+"<br/>");
 		return true;
 	}
 	
