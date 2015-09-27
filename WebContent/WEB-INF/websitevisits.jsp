@@ -7,7 +7,7 @@
  <link rel="stylesheet" type="text/css" href="http://testapp26.mybluemix.net/bootstrap/css/bootstrap.min.css"> 
  </head>
 <body>
-<h1>${name}<small>&nbsp;${desc}</small></h1>
+<h1>${uname}<small>&nbsp;${desc}</small></h1>
 
 <p class="text-left">Left aligned text.</p>
 <p class="text-center">Center aligned text.</p>
