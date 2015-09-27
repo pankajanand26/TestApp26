@@ -195,6 +195,9 @@ public class servlet1 extends HttpServlet {
 				ResultSet rs = stmt.executeQuery(sqlStatement);
 				writer.println("Executing: " + sqlStatement+"<br/>");
 	
+				if(rs==null){
+					writer.println("rs not emppty");
+				}
 				// Process the result set
 				while (rs.next()) {
 					yes = rs.getInt("YES");

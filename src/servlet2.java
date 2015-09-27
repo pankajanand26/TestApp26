@@ -163,7 +163,7 @@ public class servlet2 extends HttpServlet {
 				String  pass_req ;
 				writer.println("Executing: " + uname+"<br/>"+pass);
 								
-				sqlStatement = "SELECT PASS FROM " + tableName + " where USER = '"+ uname +"'";
+				sqlStatement = "SELECT PASS FROM " + tableName + " WHERE USER = '"+ uname +"'";
 				writer.println("sqlStatement : " + sqlStatement);
 				ResultSet rs = stmt.executeQuery(sqlStatement);
 	
@@ -172,6 +172,8 @@ public class servlet2 extends HttpServlet {
 					writer.println("Rowset not empty." );
 					
 					pass_req = rs.getString("PASS");
+					writer.println("pass_req : " + pass_req);
+					
 					if(pass == pass_req){
 						yes = 1;
 					}
