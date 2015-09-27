@@ -178,8 +178,11 @@ public class servlet2 extends HttpServlet {
 					writer.println("pass_req : " + pass_req);
 					writer.println("pass_req : " + pass);
 					
-					if(pass == pass_req){
+					if(pass.equals(pass_req)){
+						writer.println("pass equals pass_req." );
 						yes = 1;
+					} else{
+						writer.println("pass not equals pass_req." );
 					}
 				}
 				// Close the ResultSet
@@ -199,7 +202,7 @@ public class servlet2 extends HttpServlet {
 				// Connection must be on a unit-of-work boundary to allow close
 				//con.commit();
 				// Close the connection
-			//	con.close();
+				con.close();
 	
 			} catch (SQLException e) {
 				writer.println("Error connecting to database"+"<br/>");
