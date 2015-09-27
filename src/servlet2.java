@@ -27,7 +27,12 @@ public class servlet2 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served Servlet2 at: ").append(request.getContextPath());
+		
+		request.setAttribute("name", "Johnny Gaddar");
+		request.setAttribute("desc", "The thief");
+		request.getRequestDispatcher("/WEB-INF/websitevisits.jsp").forward(request, response);
+		
+		//response.getWriter().append("Served Servlet2 at: ").append(request.getContextPath());
 	}
 
 	/**

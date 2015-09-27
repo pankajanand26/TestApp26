@@ -109,6 +109,8 @@ public class servlet1 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		int yes=0,no=0;
+		
 		response.setContentType("text/html");
 		response.setStatus(200);
 		PrintWriter writer = response.getWriter();
@@ -194,7 +196,6 @@ public class servlet1 extends HttpServlet {
 				writer.println("Executing: " + sqlStatement+"<br/>");
 	
 				// Process the result set
-				int yes,no;
 				while (rs.next()) {
 					yes = rs.getInt("YES");
 					no = rs.getInt("NO");
@@ -248,6 +249,8 @@ public class servlet1 extends HttpServlet {
 		}
 		writer.close();
 		
+		request.setAttribute("name", yes);
+		request.getRequestDispatcher("/WEB-INF/websitevisits.jsp").forward(request, response);
 		//response.getWriter().append("Served Servlet1 at: ").append(request.getContextPath());
 	}
 
