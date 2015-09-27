@@ -2,15 +2,12 @@
 	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-<title>websitevisits</title>
+<title>Website Visits</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
-    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css">
-</head>
+ <link rel="stylesheet" type="text/css" href="http://testapp26.mybluemix.net/bootstrap/css/bootstrap.min.css"> 
+ </head>
 <body>
-<h1>${name}<small>${desc}</small></h1>
+<h1>${name}<small>&nbsp;${desc}</small></h1>
 
 <p class="text-left">Left aligned text.</p>
 <p class="text-center">Center aligned text.</p>
