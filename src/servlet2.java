@@ -202,7 +202,7 @@ public class servlet2 extends HttpServlet {
 				// Connection must be on a unit-of-work boundary to allow close
 				//con.commit();
 				// Close the connection
-				con.close();
+				//con.close();
 	
 			} catch (SQLException e) {
 				writer.println("Error connecting to database"+"<br/>");
