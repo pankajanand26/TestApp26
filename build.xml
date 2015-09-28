@@ -13,6 +13,9 @@
     <path id="classpathDir">
         <pathelement location="bin"/>
         <pathelement location="dep-jar/com.ibm.ws.javaee.jaxrs.1.1_1.0.1.jar"/>
+    	<pathelement location="lib/db2jcc.jar"/>
+    	<pathelement location="lib/servlet-api.jar"/>
+    	<pathelement location="lib/nosqljson.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
