@@ -13,7 +13,7 @@
 <div class="container">
 
 <% if(!(error_message.isEmpty())){ %><p><strong>${error_message}</strong></p><% } %>
-<form action="http://testapp26.mybluemix.net/servlet2" method="get"> 
+<form action="http://localhost:9080/liberty-HelloWorld/servlet2" method="get"> 
 
 <div class="panel panel-primary">
 <div class="panel-heading"><h1>Sign In</h1></div>
@@ -25,7 +25,7 @@
     <tr><td>
     <div class="form-group">
     <label for="exampleInputEmail1">Username</label>
-    <input type="username" class="form-control" name="uname" id="uname" placeholder="Username">
+    <input type="text" class="form-control" name="uname" id="uname" placeholder="Username">
   	</div>
   	<div class="form-group">
     <label for="exampleInputPassword1">Password</label>

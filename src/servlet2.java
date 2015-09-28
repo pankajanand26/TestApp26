@@ -105,6 +105,10 @@ public class servlet2 extends HttpServlet {
 		int yes=0,no=0;
 		String uname = null,pass;
 		
+		uname = request.getParameter("uname");
+		pass= request.getParameter("pass");
+		
+		
 		response.setContentType("text/html");
 		response.setStatus(200);
 		PrintWriter writer = response.getWriter();
@@ -158,8 +162,6 @@ public class servlet2 extends HttpServlet {
 //				writer.println("Executing: " + sqlStatement+"<br/>");
 //				stmt.executeUpdate(sqlStatement);
 			stmt = con.createStatement();
-				uname = request.getParameter("uname");
-				pass= request.getParameter("pass");
 				String  pass_req ;
 				writer.println("Executing: " + uname+"<br/>"+pass);
 								
@@ -221,7 +223,7 @@ public class servlet2 extends HttpServlet {
 		}
 		else{
 			request.setAttribute("uname", "Hello, "+ uname +"!!");
-			request.setAttribute("login_info", " Please register for a free account!");
+			request.setAttribute("login_info", " Please register for a free account <a href=\"http://localhost:9080/liberty-HelloWorld/register.jsp\">here</a> !");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}	
 		//response.getWriter().append("Served Servlet2 at: ").append(request.getContextPath());
