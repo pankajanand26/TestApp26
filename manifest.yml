@@ -8,4 +8,4 @@ applications:
   disk_quota: 1024M
  # replace the service name below with appropriate SQLDB service you created
   services:
-  - SQLDB-sqldb26
+  - sqldb26
