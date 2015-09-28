@@ -14,7 +14,7 @@
 
 <h4 style="color:red">${error}</h4>
 
-<form action="http://localhost:9080/liberty-HelloWorld/register" method="get"> 
+<form action="http://testapp26.mybluemix.net/register" method="get"> 
 	<table>
 	<div class="form-group"> 
 	<tr>
@@ -37,7 +37,7 @@
 <tr><td></td><td padding:20px;> 
     <input type="submit" value="Submit"/></td></tr>
 <tr><td></div>
-<h4>Already registered <a href="http://localhost:9080/liberty-HelloWorld/">Log in</a>. </h4>
+<h4>Already registered <a href="http://testapp26.mybluemix.net/">Log in</a>. </h4>
 </div>
 </td></tr>
 </table>

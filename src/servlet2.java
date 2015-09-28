@@ -223,7 +223,7 @@ public class servlet2 extends HttpServlet {
 		}
 		else{
 			request.setAttribute("uname", "Hello, "+ uname +"!!");
-			request.setAttribute("login_info", " Please register for a free account <a href=\"http://localhost:9080/liberty-HelloWorld/register.jsp\">here</a> !");
+			request.setAttribute("login_info", " Please register for a free account <a href=\"http://testapp26.mybluemix.net/register.jsp\">here</a> !");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}	
 		//response.getWriter().append("Served Servlet2 at: ").append(request.getContextPath());

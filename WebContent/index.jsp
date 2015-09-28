@@ -13,7 +13,7 @@
 <div class="container">
 
 <% if(!(error_message.isEmpty())){ %><p><strong>${error_message}</strong></p><% } %>
-<form action="http://localhost:9080/liberty-HelloWorld/servlet2" method="get"> 
+<form action="http://testapp26.mybluemix.net/servlet2" method="get"> 
 
 <div class="panel panel-primary">
 <div class="panel-heading"><h1>Sign In</h1></div>

@@ -7,6 +7,6 @@
 </head>
 <body>
 <h2>Hi ${uname}!!</h2>
-<h3>Your account is ready. Please login <a href="http://localhost:9080/liberty-HelloWorld/index.jsp">here</a></h3>>
+<h3>Your account is ready. Please login <a href="http://testapp26.mybluemix.net/index.jsp">here</a></h3>>
 </body>
 </html>
