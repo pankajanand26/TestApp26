@@ -249,7 +249,7 @@ public class servlet1 extends HttpServlet {
 		}
 		//writer.close();
 		
-		request.setAttribute("name", yes);
+		request.setAttribute("uname", yes);
 		request.setAttribute("desc", " visits");
 		request.getRequestDispatcher("/WEB-INF/websitevisits.jsp").forward(request, response);
 		//response.getWriter().append("Served Servlet1 at: ").append(request.getContextPath());
