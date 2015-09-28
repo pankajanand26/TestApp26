@@ -167,13 +167,7 @@ public class questions extends HttpServlet {
 					questionList.add(question);
 					writer.println("pass_req : " + question);
 					
-//					if(pass.equals(pass_req)){
-//						writer.println("pass equals pass_req." );
-//						yes = 1;
-//					} else{
-//						writer.println("pass not equals pass_req." );
-//					}
-				}
+			}
 				// Close the ResultSet
 				rs.close();
 	
@@ -200,18 +194,10 @@ public class questions extends HttpServlet {
 			}
 		}
 		
-		writer.close();
+//		writer.close();
 		
-//		if(yes==1){
-//			request.setAttribute("uname", uname);
-//			request.setAttribute("desc", "The thief");
-//			request.getRequestDispatcher("/WEB-INF/websitevisits.jsp").forward(request, response);			
-//		}
-//		else{
-//			request.setAttribute("uname", "Hello, "+ uname +"!!");
-//			request.setAttribute("login_info", "Register for a free account <a href=\"http://testapp26.mybluemix.net/register.jsp\">here</a> !");
-//			request.getRequestDispatcher("/index.jsp").forward(request, response);
-//		}			
+			request.setAttribute("list", questionList);
+			request.getRequestDispatcher("/WEB-INF/questions.jsp").forward(request, response);			
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
