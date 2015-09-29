@@ -9,8 +9,9 @@
 <body>
 
 <%  
+ArrayList<String> list = new ArrayList<String>();
 // retrieve your list from the request, with casting 
-ArrayList<String> list = (ArrayList<String>) request.getAttribute("list");
+list = (ArrayList<String>) request.getAttribute("list");
 
 // print the information about every category of the list
 for(String question : list) {

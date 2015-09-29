@@ -193,12 +193,12 @@ public class questions extends HttpServlet {
 				
 			}
 		}
-//		
-		writer.close();
-//		
-//			request.setAttribute("list", questionList);
-//			request.getRequestDispatcher("/WEB-INF/questions.jsp").forward(request, response);			
-//		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+//		writer.close();
+		
+			request.setAttribute("list", questionList);
+			request.getRequestDispatcher("/WEB-INF/questions.jsp").forward(request, response);			
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
