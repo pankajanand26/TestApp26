@@ -7,14 +7,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-
+  <c:forEach var="bean" items="${list}">
+    <h3>${bean.label}</h3>
+  </c:forEach>
 <%  
-ArrayList<String> list = new ArrayList<String>();
+ArrayList<String> qlist = new ArrayList<String>();
 // retrieve your list from the request, with casting 
-list = (ArrayList<String>) request.getAttribute("list");
+qlist = (ArrayList<String>) request.getAttribute("list");
 
 // print the information about every category of the list
-for(String question : list) {
+for(String question : qlist) {
     out.println("<h2>"+question+"</h2><br/>");
 }
 %>
