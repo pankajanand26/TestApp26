@@ -165,7 +165,7 @@ public class questions extends HttpServlet {
 					qid=rs.getInt("Q_ID");
 					question= rs.getString("OPTION");
 					questionList.add(question);
-					writer.println("pass_req : " + question);
+					writer.println("pass_req : " + questionList.get(0));
 					
 			}
 				// Close the ResultSet
@@ -193,12 +193,12 @@ public class questions extends HttpServlet {
 				
 			}
 		}
-		
-//		writer.close();
-		
-			request.setAttribute("list", questionList);
-			request.getRequestDispatcher("/WEB-INF/questions.jsp").forward(request, response);			
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+//		
+		writer.close();
+//		
+//			request.setAttribute("list", questionList);
+//			request.getRequestDispatcher("/WEB-INF/questions.jsp").forward(request, response);			
+//		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
