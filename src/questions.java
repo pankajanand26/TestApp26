@@ -151,7 +151,7 @@ public class questions extends HttpServlet {
 			stmt = con.createStatement();
 				String  pass_req ;
 								
-				sqlStatement = "SELECT Q_ID,OPTION FROM " + tableName;
+				sqlStatement = "SELECT Q_ID,OPTION FROM " + tableName + " ORDER BY Q_ID ASC";
 				writer.println("sqlStatement : " + sqlStatement);
 				ResultSet rs = stmt.executeQuery(sqlStatement);
 				if(rs==null){
