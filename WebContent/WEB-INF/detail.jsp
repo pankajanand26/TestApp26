@@ -40,8 +40,8 @@
 </form>
 
 <ul class="list-group">
-  <c:forEach var="bean" items="${dict}">
-    <li class="list-group-item">${bean.key}&nbsp; --- &nbsp; ${bean.value}</li>
+  <c:forEach var="ben" items="${dict}">
+    <li class="list-group-item">${ben.key}&nbsp; --- &nbsp; ${ben.value} &nbsp;votes</li>
   </c:forEach>
 </ul>
 
