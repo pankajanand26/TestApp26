@@ -158,7 +158,7 @@ public class detail extends HttpServlet {
 				
 			stmt = con.createStatement();
 								
-				sqlStatement = "SELECT OPTION,VOTES FROM " + tableName + " WHERE \"Q_ID\" = "+ qid;
+				sqlStatement = "SELECT OPTION,VOTES FROM " + tableName + " WHERE \"Q_ID\" = "+ qid +" ORDER BY VOTES DESC";
 				writer.println("sqlStatement : " + sqlStatement);
 				ResultSet rs = stmt.executeQuery(sqlStatement);
 				if(rs==null){
