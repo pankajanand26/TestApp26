@@ -34,7 +34,7 @@ Hello ${uname}
 
     <tr><td>
     <div class="radio">
-    <label><input type="radio" value="${bean}" name="option" id="option" ></label>
+    <label><input type="radio" value="${bean}" name="option" id="option" >${bean}</label>
   	</div>
   	</td>
   	</tr>
