@@ -204,7 +204,7 @@ public class questions extends HttpServlet {
 		}
 		
 //		writer.close();
-		if(uname.isEmpty()){
+		if(uname!= null || uname.isEmpty()){
 			request.setAttribute("uname", "Hello, "+ uname +"!!");
 			request.setAttribute("login_info", "Register for a free account <a href=\"http://testapp26.mybluemix.net/register.jsp\">here</a> !");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
