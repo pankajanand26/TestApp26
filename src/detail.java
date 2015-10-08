@@ -109,7 +109,10 @@ public class detail extends HttpServlet {
 		
 		int qid = Integer.parseInt((String) request.getParameter("q"));
 	
+		int votes=0;
 		String question = null;
+		
+		Dictionary dict = new Hashtable();
 		
 		response.setContentType("text/html");
 		response.setStatus(200);
@@ -155,7 +158,7 @@ public class detail extends HttpServlet {
 				
 			stmt = con.createStatement();
 								
-				sqlStatement = "SELECT OPTION FROM " + tableName + " WHERE \"Q_ID\" = "+ qid;
+				sqlStatement = "SELECT OPTION,VOTES FROM " + tableName + " WHERE \"Q_ID\" = "+ qid;
 				writer.println("sqlStatement : " + sqlStatement);
 				ResultSet rs = stmt.executeQuery(sqlStatement);
 				if(rs==null){
@@ -166,8 +169,10 @@ public class detail extends HttpServlet {
 				while (rs.next()) {
 					writer.println("Rowset not empty." );
 					
+					votes= rs.getInt("VOTES");
 					question= rs.getString("OPTION");
-					choiceList.add(question);					
+					choiceList.add(question);
+					dict.put(votes, question);
 			}
 				// Close the ResultSet
 				rs.close();
@@ -219,6 +224,7 @@ public class detail extends HttpServlet {
 					//request.setAttribute("list", questionList);
 		request.setAttribute("list", choiceList);
 		request.setAttribute("ques", question);
+		request.setAttribute("dict", dict);
 		request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response);			
 				//response.getWriter().append("Served at: ").append(request.getContextPath());
 			
