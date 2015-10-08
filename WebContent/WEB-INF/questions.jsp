@@ -13,11 +13,11 @@
 Hello ${uname}
 <div class="container">
 <h2>Poll Questions</h2>
-<div class="list-group">
+<ul class="list-group">
   <c:forEach var="bean" items="${list}">
-    <a href="http://testapp26.mybluemix.net/detail?q=${bean.key}" class="list-group-item active">${bean.value}</a>
+    <li class="list-group-item"><a href="http://testapp26.mybluemix.net/detail?q=${bean.key}">${bean.value}</a></li>
   </c:forEach>
-</div>
+</ul>
 </div>
 </body>
 </html>
