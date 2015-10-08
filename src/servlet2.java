@@ -219,7 +219,8 @@ public class servlet2 extends HttpServlet {
 		if(yes==1){
 			request.setAttribute("uname", uname);
 			request.setAttribute("desc", "The thief");
-			request.getRequestDispatcher("/WEB-INF/websitevisits.jsp").forward(request, response);			
+//			request.getRequestDispatcher("/WEB-INF/websitevisits.jsp").forward(request, response);			
+			request.getRequestDispatcher("/WEB-INF/questions.jsp").forward(request, response);			
 		}
 		else{
 			request.setAttribute("uname", "Hello, "+ uname +"!!");

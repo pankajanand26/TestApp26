@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="http://testapp26.mybluemix.net/bootstrap/css/bootstrap.min.css"> 
 </head>
 <body>
+Hello ${uname}
 <div class="container">
 <h2>Poll Questions</h2>
 <div class="list-group">
