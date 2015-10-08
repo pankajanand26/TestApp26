@@ -12,7 +12,7 @@
 <body>
 <jsp:useBean id="dictionary" class="java.util.Hashtable" />
   <c:forEach var="bean" items="${list}">
-    <a href="http://testapp26.mybluemix.net/detail?q=${bean.key}"<h2>${bean.value}</h2>>
+    <a href="http://testapp26.mybluemix.net/detail?q=${bean.key}"><h2>${bean.value}</h2></a>
   </c:forEach>
 </body>
 </html>
