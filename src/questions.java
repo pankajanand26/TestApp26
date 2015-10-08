@@ -107,7 +107,8 @@ public class questions extends HttpServlet {
 		int[] qids;
 		
 		Dictionary dict=new Hashtable();
-		
+		String uname = request.getParameter("uname");
+	
 		int qid=0,no=0;
 		String question = null;
 		
@@ -203,11 +204,18 @@ public class questions extends HttpServlet {
 		}
 		
 //		writer.close();
-		
+		if(uname.isEmpty()){
+			request.setAttribute("uname", "Hello, "+ uname +"!!");
+			request.setAttribute("login_info", "Register for a free account <a href=\"http://testapp26.mybluemix.net/register.jsp\">here</a> !");
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			
+		}
+		else{
 			//request.setAttribute("list", questionList);
 			request.setAttribute("list", dict);
 			request.getRequestDispatcher("/WEB-INF/questions.jsp").forward(request, response);			
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		}
 	}
 
 	/**
