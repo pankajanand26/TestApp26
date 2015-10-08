@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Set;
+import java.util.Dictionary;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -102,6 +104,9 @@ public class questions extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		ArrayList<String> questionList =new ArrayList<String>();
+		int[] qids;
+		
+		Dictionary dict=new Hashtable();
 		
 		int qid=0,no=0;
 		String question = null;
@@ -165,6 +170,9 @@ public class questions extends HttpServlet {
 					qid=rs.getInt("Q_ID");
 					question= rs.getString("OPTION");
 					questionList.add(question);
+					
+					dict.put(qid,question);
+					
 					writer.println("pass_req : " + questionList.get(0));
 					
 			}
@@ -196,7 +204,8 @@ public class questions extends HttpServlet {
 		
 //		writer.close();
 		
-			request.setAttribute("list", questionList);
+			//request.setAttribute("list", questionList);
+			request.setAttribute("list", dict);
 			request.getRequestDispatcher("/WEB-INF/questions.jsp").forward(request, response);			
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
