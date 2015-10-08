@@ -205,13 +205,12 @@ public class questions extends HttpServlet {
 		
 //		writer.close();
 		if(uname!= null){
-			 if(!uname.isEmpty())
-			 {
+			 if(!uname.isEmpty()){
 					//request.setAttribute("list", questionList);
 					request.setAttribute("list", dict);
 					request.getRequestDispatcher("/WEB-INF/questions.jsp").forward(request, response);			
 				//response.getWriter().append("Served at: ").append(request.getContextPath());
-					 }
+			}
 		}
 		else 
 		{

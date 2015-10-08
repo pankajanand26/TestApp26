@@ -15,7 +15,7 @@ Hello ${uname}
 <h2>Poll Questions</h2>
 <div class="list-group">
   <c:forEach var="bean" items="${list}">
-    <h4><a href="http://testapp26.mybluemix.net/detail?q=${bean.key}" class="list-group-item">${bean.value}</a></h4>
+    <a href="http://testapp26.mybluemix.net/detail?q=${bean.key}" class="list-group-item active">${bean.value}</a>
   </c:forEach>
 </div>
 </div>
