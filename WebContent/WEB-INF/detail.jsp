@@ -11,16 +11,7 @@
 <link rel="stylesheet" type="text/css" href="http://testapp26.mybluemix.net/bootstrap/css/bootstrap.min.css"> 
 </head>
 <body>
-Hello ${uname}
 <div class="container">
-<h2>${ques}</h2>
-<ul class="list-group">
-  <c:forEach var="bean" items="${list}">
-    <li class="list-group-item">${bean}</li>
-  </c:forEach>
-</ul>
-
-
 <form action="http://testapp26.mybluemix.net/result" method="get"> 
 
 <div class="panel panel-primary">
@@ -47,6 +38,13 @@ Hello ${uname}
 </div>
 </div>
 </form>
+
+<ul class="list-group">
+  <c:forEach var="bean" items="${list}">
+    <li class="list-group-item">${bean}</li>
+  </c:forEach>
+</ul>
+
 </div>
 </body>
 </html>
