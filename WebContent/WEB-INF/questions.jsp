@@ -10,9 +10,14 @@
 <link rel="stylesheet" type="text/css" href="http://testapp26.mybluemix.net/bootstrap/css/bootstrap.min.css"> 
 </head>
 <body>
-<jsp:useBean id="dictionary" class="java.util.Hashtable" />
+<div class="container">
+<div class="row">
+    <div class="col-md-8">
   <c:forEach var="bean" items="${list}">
-    <a href="http://testapp26.mybluemix.net/detail?q=${bean.key}"><h2>${bean.value}</h2></a>
+    <h2><a href="http://testapp26.mybluemix.net/detail?q=${bean.key}">${bean.value}</a></h2>
   </c:forEach>
+</div>
+</div>
+</div>
 </body>
 </html>
