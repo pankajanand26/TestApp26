@@ -204,17 +204,21 @@ public class questions extends HttpServlet {
 		}
 		
 //		writer.close();
-		if(uname!= null || uname.isEmpty()){
+		if(uname!= null){
+			 if(!uname.isEmpty())
+			 {
+					//request.setAttribute("list", questionList);
+					request.setAttribute("list", dict);
+					request.getRequestDispatcher("/WEB-INF/questions.jsp").forward(request, response);			
+				//response.getWriter().append("Served at: ").append(request.getContextPath());
+					 }
+		}
+		else 
+		{
 			request.setAttribute("uname", "Hello, "+ uname +"!!");
 			request.setAttribute("login_info", "Register for a free account <a href=\"http://testapp26.mybluemix.net/register.jsp\">here</a> !");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
-			
-		}
-		else{
-			//request.setAttribute("list", questionList);
-			request.setAttribute("list", dict);
-			request.getRequestDispatcher("/WEB-INF/questions.jsp").forward(request, response);			
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+	
 		}
 	}
 
