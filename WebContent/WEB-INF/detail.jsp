@@ -12,13 +12,40 @@
 <body>
 Hello ${uname}
 <div class="container">
-<h2>Poll Questions</h2>
+<h2>${ques}</h2>
 <ul class="list-group">
   <c:forEach var="bean" items="${list}">
     <li class="list-group-item">${bean}</li>
   </c:forEach>
 </ul>
-</div>
 
+
+<form action="http://testapp26.mybluemix.net/result" method="get"> 
+
+<div class="panel panel-primary">
+<div class="panel-heading"><h1>${ques}</h1></div>
+  <div class="panel-body">
+
+
+<table>
+  <div class="fieldWrapper"> 
+  <c:forEach var="bean" items="${list}">
+
+    <tr><td>
+    <div class="radio">
+    <label><input type="radio" value="${bean}" name="option" id="option" ></label>
+  	</div>
+  	</td>
+  	</tr>
+   </c:forEach>
+ 
+  </div>  
+  	<tr><td padding: 20px;>
+<input type="submit" value="Submit" /></td></tr> 
+</table>
+</div>
+</div>
+</form>
+</div>
 </body>
 </html>

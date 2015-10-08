@@ -172,6 +172,26 @@ public class detail extends HttpServlet {
 				// Close the ResultSet
 				rs.close();
 	
+				stmt = con.createStatement();
+				
+				sqlStatement = "SELECT OPTION FROM " + "USER08779.POLL_QUESTION" + " WHERE \"Q_ID\" = "+ qid;
+				writer.println("sqlStatement : " + sqlStatement);
+				ResultSet rs1 = stmt.executeQuery(sqlStatement);
+				if(rs1==null){
+					writer.println("rs not emppty");
+				}
+			
+				// Process the result set
+				while (rs1.next()) {
+					writer.println("Rowset not empty." );
+					
+					question= rs1.getString("OPTION");
+										
+			}
+				// Close the ResultSet
+				rs1.close();
+	
+				
 			} catch (SQLException e) {
 				writer.println("Error connecting to database"+"<br/>");
 				writer.println("SQL Exception: " + e+"<br/>");
@@ -197,8 +217,9 @@ public class detail extends HttpServlet {
 		
 //		writer.close();
 					//request.setAttribute("list", questionList);
-					request.setAttribute("list", choiceList);
-					request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response);			
+		request.setAttribute("list", choiceList);
+		request.setAttribute("ques", question);
+		request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response);			
 				//response.getWriter().append("Served at: ").append(request.getContextPath());
 			
 	}
