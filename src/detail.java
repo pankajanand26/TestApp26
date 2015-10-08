@@ -223,6 +223,7 @@ public class detail extends HttpServlet {
 //		writer.close();
 					//request.setAttribute("list", questionList);
 		request.setAttribute("list", choiceList);
+		request.setAttribute("qid", qid);
 		request.setAttribute("ques", question);
 		request.setAttribute("dict", dict);
 		request.getRequestDispatcher("/WEB-INF/detail.jsp").forward(request, response);			
@@ -235,6 +236,81 @@ public class detail extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	}
+		
+		
+		int qid = Integer.parseInt((String) request.getParameter("q"));
+	
+		String option= request.getParameter("option");
+		
+		PrintWriter writer = response.getWriter();
+		
+		// process the VCAP env variable and set all the global connection parameters
+		if (processVCAP(writer)) {
+	
+			// Connect to the Database
+			Connection con = null;
+			try {
+				DB2SimpleDataSource dataSource = new DB2SimpleDataSource();
+				dataSource.setServerName(databaseHost);
+				dataSource.setPortNumber(port);
+				dataSource.setDatabaseName(databaseName);
+				dataSource.setUser(user);
+				dataSource.setPassword (password);
+				dataSource.setDriverType(4);
+				con=dataSource.getConnection();
+				con.setAutoCommit(false);
+			} catch (SQLException e) {
+				writer.println("Error connecting to database"+"<br/>");
+				writer.println("SQL Exception: " + e+"<br/>");
+				
+				return;
+			} 
+	
+			// Try out some dynamic SQL Statements
+			Statement stmt = null;
+			String tableName = "";
+			String sqlStatement = "";
+			// It is recommend NOT to use the default schema since it is correlated
+			// to the generated user ID
+			String schemaName = "USER08779";
+			// create a unique table name to make sure we deal with our own table
+			// If another version of this sample app binds to the same database, 
+			// this gives us some level of isolation
+			tableName = schemaName + "." + "POLL_CHOICES";
+	
+			// Execute some SQL statements on the table: Insert, Select and Delete
 
+			try {
+				
+				stmt = con.createStatement();
+									
+					sqlStatement = "UPDATE " + tableName +	" SET VOTES = VOTES + 1 WHERE \"OPTION\" = '" + option + "' AND \"Q_ID\" = '"+ qid +"'";
+					writer.println("sqlStatement : " + sqlStatement);
+					stmt.executeUpdate(sqlStatement);
+					
+				} catch (SQLException e) {
+					writer.println("Error connecting to database"+"<br/>");
+					writer.println("SQL Exception: " + e+"<br/>");
+					
+				}
+	
+			// Close everything off
+			try {
+				// Close the Statement
+				stmt.close();
+				// Connection must be on a unit-of-work boundary to allow close
+				con.commit();
+				// Close the connection
+				con.close();
+	
+			} catch (SQLException e) {
+				writer.println("Error connecting to database"+"<br/>");
+				writer.println("SQL Exception: " + e+"<br/>");
+				
+			}
+			
+			doGet(request,response);
+	
+		}
+	}
 }

@@ -12,8 +12,9 @@
 </head>
 <body>
 <div class="container">
-<form action="http://testapp26.mybluemix.net/result" method="get"> 
+<form action="http://testapp26.mybluemix.net/detail" method="post"> 
 
+<input type="hidden" name="q" value="${qid}">
 <div class="panel panel-primary">
 <div class="panel-heading"><h1>${ques}</h1></div>
   <div class="panel-body">
@@ -31,6 +32,7 @@
   	</tr>
    </c:forEach>
  
+ 
   </div>  
   	<tr><td padding: 20px;>
 <input type="submit" value="Submit" /></td></tr> 
@@ -41,7 +43,7 @@
 
 <ul class="list-group">
   <c:forEach var="ben" items="${dict}">
-    <li class="list-group-item">${ben.value}&nbsp; --- &nbsp; ${ben.key} &nbsp;votes</li>
+    <li class="list-group-item">${ben.key}&nbsp; --- &nbsp; ${ben.value} &nbsp;votes</li>
   </c:forEach>
 </ul>
 
