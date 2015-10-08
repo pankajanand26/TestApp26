@@ -41,7 +41,7 @@
 
 <ul class="list-group">
   <c:forEach var="ben" items="${dict}">
-    <li class="list-group-item">${ben.key}&nbsp; --- &nbsp; ${ben.value} &nbsp;votes</li>
+    <li class="list-group-item">${ben.value}&nbsp; --- &nbsp; ${ben.key} &nbsp;votes</li>
   </c:forEach>
 </ul>
 

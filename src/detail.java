@@ -172,7 +172,7 @@ public class detail extends HttpServlet {
 					votes= rs.getInt("VOTES");
 					question= rs.getString("OPTION");
 					choiceList.add(question);
-					dict.put(votes, question);
+					dict.put(question, votes);
 			}
 				// Close the ResultSet
 				rs.close();
