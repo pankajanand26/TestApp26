@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container">
-<p class="bg-primary"><h3>Welcome ${uname}</h3></p>
+<p class="bg-primary"><h3>Welcome ${uname}!</h3></p>
 <h2>Poll Questions</h2>
 <ul class="list-group">
   <c:forEach var="bean" items="${list}">
