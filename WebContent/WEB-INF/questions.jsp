@@ -10,8 +10,8 @@
 <link rel="stylesheet" type="text/css" href="http://testapp26.mybluemix.net/bootstrap/css/bootstrap.min.css"> 
 </head>
 <body>
-Hello ${uname}
 <div class="container">
+<p class="bg-primary"><h3>Welcome ${uname}</h3></p>
 <h2>Poll Questions</h2>
 <ul class="list-group">
   <c:forEach var="bean" items="${list}">
